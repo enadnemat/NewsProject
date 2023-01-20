@@ -28,7 +28,7 @@ class APIAdminController extends Controller
 
     public function logout()
     {
-        Auth::guard('admin')->logout();
+        Auth::logout();
         return $this->GetDataWithArray('Done');
     }
 }
