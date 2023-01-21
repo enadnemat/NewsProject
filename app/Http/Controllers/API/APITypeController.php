@@ -19,6 +19,10 @@ class APITypeController extends Controller
         if ($type = Type::paginate(10)) {
             return $this->GetDataWithArray($type);
         }
+        else
+        {
+            return $this->ReturnError();
+        }
     }
 
     public function show(Request $request)
