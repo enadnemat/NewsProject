@@ -13,7 +13,7 @@ class APIAdminController extends Controller
 
     public function postLogin(Request $request)
     {
-        if ($this->validate($request, ['email' => 'required | email', 'password' => 'required']))
+        if ($this->validate($request, ['email' => 'required | email', 'password' => 'required',]))
         {
             if (Auth::guard('admin')->attempt(['email' => $request->input('email'), 'password' => $request->input('password'),])) {
                 return $this->GetDataWithArray($request,'1' ,'Logged in' );
