@@ -63,8 +63,10 @@ class PostController extends Controller
 
     public function viewpost(Request $request)
     {
+        $posts = Post::withCount('photos')->with('type')->whereRelation('type', 'type_id')->get();
+        //return response()->json($posts);
         if ($request->ajax()) {
-            $posts = Post::withCount('photos')->with('type')->whereRelation('type', 'type_id');
+
             return Datatables($posts)
                 ->setRowId('id')
                 ->addColumn('viewPhoto', function ($row) {
@@ -98,14 +100,13 @@ class PostController extends Controller
 
     public function edit($id)
     {
-        $post = Post::select('id', 'title_en', 'title_ar', 'description_en', 'description_ar', 'photo', 'type_id')->find($id);
-        $types = Type::select('id', 'name_ar', 'name_en')->get();
+        $post = Post::find($id);
+        $types = Type::all();
         return view('edit', compact('post', 'types'));
     }
 
     public function update(Request $request, $id)
     {
-        //update
         $post = Post::find($id);
 
         $post->update([

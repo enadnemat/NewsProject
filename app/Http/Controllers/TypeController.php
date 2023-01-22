@@ -43,6 +43,8 @@ class TypeController extends Controller
 
     public function getTypes(Request $request)
     {
+        //$type = Type::all();
+        //return response()->json($types);
         if ($request->ajax()) {
             $types = Type::withCount('posts');
             return Datatables($types)

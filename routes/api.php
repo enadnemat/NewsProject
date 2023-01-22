@@ -7,7 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
 
-Route::group(['prefix' => 'types', 'middleware' => 'auth:sanctum'], function () {
+Route::group(['prefix' => 'types'], function () {
     Route::get('get', [APITypeController::class, 'index']);
     Route::get('show', [APITypeController::class, 'show']);
     Route::post('create', [APITypeController::class, 'create']);
@@ -15,7 +15,7 @@ Route::group(['prefix' => 'types', 'middleware' => 'auth:sanctum'], function () 
     Route::post('delete', [APITypeController::class, 'delete']);
 });
 
-Route::group(['prefix' => 'posts', 'middleware' => 'auth:sanctum'], function () {
+Route::group(['prefix' => 'posts'], function () {
     Route::get('get', [APIPostController::class, 'index']);
     Route::get('show', [APIPostController::class, 'show']);
     Route::post('create', [APIPostController::class, 'create']);
